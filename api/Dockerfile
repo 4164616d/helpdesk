@@ -13,6 +13,7 @@ COPY src ./src
 
 # Install API dependencies
 RUN pipenv install
+RUN ["chmod", "+x", "/usr/src/app/run.sh"]
 
 # Start app
 EXPOSE 5000

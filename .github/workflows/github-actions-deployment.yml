@@ -1,6 +1,9 @@
 name: Helpdesk deployment
 run-name: ${{ github.actor }} deployment
-on: [push]
+on:
+  push:
+    branches:
+      - master
 jobs:
   startup-containers:
     runs-on: ubuntu-latest
