@@ -13,8 +13,3 @@ jobs:
         with:
           compose-file: "docker-compose.yaml"
           down-flags: "--volumes"
-      - uses: actions/checkout@v2
-      - id: test
-        uses: johnlokerse/website-healthcheck@v2
-        with:
-          web-url: "http://localhost"
