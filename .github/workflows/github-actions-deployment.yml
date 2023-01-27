@@ -5,17 +5,13 @@ on:
     branches:
       - main
 jobs:
-  startup-containers:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: isbang/compose-action@v1.4.1
         with:
           compose-file: "docker-compose.yaml"
-  health_check_job:
-    runs-on: ubuntu-latest
-    name: Check for status 200
-    steps:
       - uses: actions/checkout@v2
       - id: test
         uses: johnlokerse/website-healthcheck@v2
