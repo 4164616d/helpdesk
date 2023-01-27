@@ -1,0 +1,39 @@
+version: "3.9"
+services:
+  api:
+    build: ./api
+    environment:
+      - DB_ADDRESS=host.docker.internal
+      - DB_USER=root
+      - DB_PASSWORD=Password1234
+      - DB_DATABASE=helpdesk
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Password1234
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database-dump:/var/lib/mysql
+      - ./database:/docker-entrypoint-initdb.d
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_USER=root
+      - PMA_PASSWORD=Password1234
