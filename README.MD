@@ -1,6 +1,6 @@
 # IT Helpdesk
 
-Ticket submission application for users within the organisation to gain IT help from other users and administrators. Built in react with a python/flask backend and a mySQL database. Authentication has been developed using bcrypt for password hashes and JWT tokens have been used to maintain login sessions.
+Ticket submission application for users within the organisation to gain IT help from other users and administrators. Built in react with a python/flask backend and a mySQL database. Authentication has been developed using bcrypt password hashes and JWT tokens have been used to maintain login sessions.
 
 ## Starting application
 
