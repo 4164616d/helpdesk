@@ -1,0 +1,21 @@
+name: Frontend Tests
+run-name: ${{ github.actor }} frontend tests
+on:
+  push:
+    branches:
+      - main
+      - unit-testing
+defaults:
+  run:
+    working-directory: frontend
+jobs:
+  code-style:
+    name: Run ESLint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm ci
+      - uses: eslint/github-action@v0
