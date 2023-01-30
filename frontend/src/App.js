@@ -15,7 +15,7 @@ import CommentHistory from './pages/CommentHistory'
 import useNotification from './utils/notification'
 
 function App () {
-  const [, sendNotification] = useNotification()
+  const [msg, sendNotification] = useNotification()
   const [user, setUser] = useState()
   const navigate = useNavigate()
 
