@@ -7,6 +7,16 @@ module.exports = {
     'plugin:react/recommended',
     'standard'
   ],
+  overrides: [
+    {
+      files: [
+        '**/*.test.js'
+      ],
+      env: {
+        jest: true
+      }
+    }
+  ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true
