@@ -27,8 +27,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "lint": "eslint **/*.{js,jsx} --quiet",
-    "lint:fix": "npm run lint -- --fix"
-
+    "lint:fix": "npm run lint -- --fix",
+    "eslint:github-action": "npm run lint"
   },
   "eslintConfig": {
     "extends": [
