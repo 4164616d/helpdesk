@@ -6,7 +6,10 @@ on:
       - main
       - unit-testing
 jobs:
-  code-style:
+  frontend-code-style:
+    defaults:
+      run:
+        working-directory: ./frontend
     name: Run ESLint
     runs-on: ubuntu-latest
     steps:
@@ -14,7 +17,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-        working-directory: ./frontend
       - run: npm ci
       - uses: eslint/github-action@v0
 
