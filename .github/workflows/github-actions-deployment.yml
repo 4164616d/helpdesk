@@ -14,10 +14,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: Frontend Eslint
+      - uses: eslint/github-action@v0
+        name: Frontend Eslint
         working-directory: ./frontend
         run: npm ci
-        uses: eslint/github-action@v0
 
   build:
     runs-on: ubuntu-latest
