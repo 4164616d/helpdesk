@@ -63,6 +63,7 @@ def post_register():
     password = data.get("password")
     type = data.get("type", "User")
 
+
     adminRegistrationAllowed = os.getenv("ADMIN_REGISTRATION_ALLOWED", 'False').lower() in ('true', '1', 't')
     if(not adminRegistrationAllowed and type=="Admin"):
         abort(403, "Admin Registration Is Disabled")
@@ -87,6 +88,7 @@ def get_users(user):
 @authorize
 @expects_json(schema.create_ticket)
 def post_ticket(user):
+  print(f'{request.remote_addr} - {user.get_email()} create ticket')
   data = request.get_json()
 
   title = data.get("title")
@@ -102,12 +104,14 @@ def post_ticket(user):
 @limiter.limit("400 per day")
 @authorize
 def get_tickets(user):
+  print(f'{request.remote_addr} - {user.get_email()} get all tickets')
   return jsonify(get_all_tickets())
 
 # Endpoint for users to get list of all comments
 @app.route('/comments', methods=['get'])
 @authorize
 def get_comments(user):
+  print(f'{request.remote_addr} - {user.get_email()} get comments')
   return jsonify(get_all_comments())
 
 # Endpoint for user to create a ticket
@@ -115,6 +119,7 @@ def get_comments(user):
 @authorize
 @expects_json(schema.add_comment)
 def post_comment(user):
+  print(f'{request.remote_addr} - {user.get_email()} add comment')
   data = request.get_json()
 
   text = data.get("text")
@@ -128,10 +133,11 @@ def post_comment(user):
 @app.route('/ticket/<ticket_id>/closed', methods=['PUT'])
 @authorize
 def put_ticket_closed(user,ticket_id):
+  print(f'{request.remote_addr} - {user.get_email()} close ticket')
   # Check user is owner or admin of ticket
   if(user.get_type()=="Admin" or user.get_id()==get_owner_of_ticket(ticket_id)):
       set_ticket_closed(ticket_id)
       return 'success', 200
   else:
-      abort(403, "You are not the owner of admin of this ticket")
+      abort(403, "You are not the owner of this ticket")
   

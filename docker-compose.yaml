@@ -22,7 +22,9 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: Password1234
+      MYSQL_ROOT_PASSWORD: CgT45n5rMoAXfye9QnX6qvpkxJ2TTE3i9VhwwDKxkDEBzsmzzs
+      MYSQL_USER: helpdesk_user
+      MYSQL_PASSWORD: dYBDzxPUZVD5Wx8h4M8eAn7RfBJiNtYBdu5A2C2gK4Dhum4c7F
     ports:
       - "3306:3306"
     volumes:
@@ -36,4 +38,4 @@ services:
     environment:
       - PMA_ARBITRARY=1
       - PMA_USER=root
-      - PMA_PASSWORD=Password1234
+      - PMA_PASSWORD=CgT45n5rMoAXfye9QnX6qvpkxJ2TTE3i9VhwwDKxkDEBzsmzzs

@@ -12,6 +12,7 @@ bcrypt = "==4.0.1"
 flask-limiter = "===2.6.3"
 flask-cors = "==3.0.10"
 python-dotenv = "==0.21.0"
+pytest = "*"
 
 [dev-packages]
 

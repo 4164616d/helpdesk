@@ -15,8 +15,7 @@ def login(request):
     data = request.get_json()
     email = data.get("email")
     password = data.get("password")
-    print(request)
-
+    
     user = db.get_user(email)
     if(passwordIsCorrect(password, user.get_passwordHash())):
         type = user.get_type()
@@ -24,6 +23,7 @@ def login(request):
         fp = generateFingerprint(request)
         return { 'token': generateToken(id, email, type, fp), 'type': type, 'email':email }
     else:
+        print(f'{email} login attempt failed')
         abort(401, "Incorrect email or password")
 
 def generateFingerprint(request):
@@ -31,7 +31,6 @@ def generateFingerprint(request):
         ip = request.remote_addr 
         userAgent = request.headers.get('User-Agent')
         fp = abs(hash(ip + userAgent)) % (10 ** 20)
-        print(fp)
         return fp
     except:
         abort(400, 'Cannot get device fingerprint')
