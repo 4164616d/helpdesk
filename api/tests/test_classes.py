@@ -1,3 +1,5 @@
+# flake8-in-file-ignores: noqa: E501
+
 from src.classes.User import User
 from src.classes.Comment import Comment
 

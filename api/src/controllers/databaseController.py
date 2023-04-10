@@ -1,8 +1,8 @@
+# flake8-in-file-ignores: noqa: E722
+
 from classes.Database import Database
 from flask import abort
 from classes.User import User
-from classes.Ticket import Ticket
-import json
 
 db = Database()
 

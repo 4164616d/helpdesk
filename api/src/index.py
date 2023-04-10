@@ -1,3 +1,5 @@
+# flake8-in-file-ignores: noqa: E501
+
 from flask import Flask, jsonify, request, abort
 from controllers.databaseController import get_all_normal_users, insert_ticket, get_all_tickets, insert_comment, get_owner_of_ticket, set_ticket_closed, get_all_comments
 from flask_expects_json import expects_json

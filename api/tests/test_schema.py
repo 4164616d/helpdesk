@@ -1,3 +1,5 @@
+# flake8-in-file-ignores: noqa: E501
+
 from src.utils.schema import register
 import re
 

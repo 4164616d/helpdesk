@@ -1,3 +1,4 @@
+# flake8-in-file-ignores: noqa: W605,E501
 
 register = {
     "type": "object",

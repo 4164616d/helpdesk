@@ -1,3 +1,5 @@
+# flake8-in-file-ignores: noqa: E722
+
 from classes.User import User
 import controllers.databaseController as db
 import bcrypt
@@ -7,7 +9,6 @@ from dotenv import load_dotenv
 import os
 from functools import wraps
 from flask import request, abort
-import json
 
 load_dotenv()
 
@@ -77,7 +78,7 @@ def authorize(f):
 
     @wraps(f)
     def decorated_function(*args, **kws):
-        if not 'Authorization' in request.headers:
+        if 'Authorization' not in request.headers:
             abort(401, "Authorization header is required")
 
         user = None
