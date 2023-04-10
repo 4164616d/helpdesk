@@ -1,4 +1,3 @@
-from ast import pattern
 
 register = {
     "type": "object",
