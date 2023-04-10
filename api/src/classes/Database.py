@@ -11,26 +11,29 @@ class Database:
     connection_attemps = 0
 
     def __init__(self):
-        if(self.connection_attemps<6):
-            self.connection_attemps += 1
-            print("Connecting to SQL Server. Attempt:", self.connection_attemps)
-            try:
-                self.connection = connect(
-                    host=os.getenv('DB_ADDRESS'),
-                    user=os.getenv('DB_USER'),
-                    password=os.getenv('DB_PASSWORD'),
-                    database=os.getenv('DB_DATABASE'))
-                if self.connection.is_connected():
-                    self.cursor = self.connection.cursor()
-                    self.cursor.execute("select database();")
-                    record = self.cursor.fetchone()
-                    print("Connected to", record)
-            except:
-                print("Connection error, waiting:", (self.connection_attemps+1)**2, " seconds")
-                time.sleep((self.connection_attemps+1)**2)
-                self.__init__()
+        if(os.getenv('MODE') == "test"):
+            print("Testing mode - Will not connect to database")
         else:
-            return abort(500, "Could not connect to SQL server")
+            if(self.connection_attemps<6):
+                self.connection_attemps += 1
+                print("Connecting to SQL Server. Attempt:", self.connection_attemps)
+                try:
+                    self.connection = connect(
+                        host=os.getenv('DB_ADDRESS'),
+                        user=os.getenv('DB_USER'),
+                        password=os.getenv('DB_PASSWORD'),
+                        database=os.getenv('DB_DATABASE'))
+                    if self.connection.is_connected():
+                        self.cursor = self.connection.cursor()
+                        self.cursor.execute("select database();")
+                        record = self.cursor.fetchone()
+                        print("Connected to", record)
+                except:
+                    print("Connection error, waiting:", (self.connection_attemps+1)**2, " seconds")
+                    time.sleep((self.connection_attemps+1)**2)
+                    self.__init__()
+            else:
+                return abort(500, "Could not connect to SQL server")
 
     def check_connection(self):
         if(not self.connection.is_connected()):
