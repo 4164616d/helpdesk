@@ -17,7 +17,7 @@ class User:
 
     def get_passwordHash(self):
         return self.passwordHash
-    
+
     def get_token(self):
         return self.token
 
@@ -26,7 +26,7 @@ class User:
 
     def set_token(self, token):
         self.token = token
-    
+
     def set_id(self, id):
         self.id = id
 

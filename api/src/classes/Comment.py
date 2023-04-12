@@ -11,7 +11,7 @@ class Comment:
 
     def get_text(self):
         return self.text
-    
+
     def get_user_id(self):
         return self.user_id
 

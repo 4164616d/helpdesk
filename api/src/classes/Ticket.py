@@ -16,7 +16,7 @@ class Ticket:
 
     def get_description(self):
         return self.description
-    
+
     def get_status(self):
         return self.status
 
